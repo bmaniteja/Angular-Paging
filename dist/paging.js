@@ -42,15 +42,15 @@ angular.module('bw.paging', []).directive('paging', function () {
 
         // Assign the angular directive template HTML
         template: 
-            '<ul ng-hide="Hide" ng-class="ulClass"> ' +
-                '<li ' +
+             '<div ng-hide="Hide" ng-class="ulClass" class="ui pagination menu">'+
+                     '<div  class="item"' +
                     'title="{{Item.title}}" ' +
                     'ng-class="Item.liClass" ' +
                     'ng-click="Item.action()" ' +
                     'ng-repeat="Item in List"> ' +
-                        '<span ng-bind="Item.value"></span> ' +
-                '</li>' +
-            '</ul>'
+                        '<span ng-bind-html="Item.value"></span> ' +
+                '</div>' +
+             '</div>'
     };
     
     
@@ -182,16 +182,16 @@ angular.module('bw.paging', []).directive('paging', function () {
             disabled = scope.page - 1 <= 0;
             var prevPage = scope.page - 1 <= 0 ? 1 : scope.page - 1;
             
-            alpha = { value : "<<", title: 'First Page', page: 1 };
-            beta = { value: "<", title: 'Previous Page', page: prevPage };
+            alpha = { value : '<i class="angle left icon"></i>', title: 'First Page', page: 1 };
+            beta = { value: '<i class="angle double left icon"></i>', title: 'Previous Page', page: prevPage };
              
         } else {
             
             disabled = scope.page + 1 > pageCount;
             var nextPage = scope.page + 1 >= pageCount ? pageCount : scope.page + 1;
             
-            alpha = { value : ">", title: 'Next Page', page: nextPage };
-            beta = { value: ">>", title: 'Last Page', page: pageCount };
+            alpha = { value : '<i class="angle right icon"></i>', title: 'Next Page', page: nextPage };
+            beta = { value: '<i class="angle double right icon"></i>', title: 'Last Page', page: pageCount };
         }
 
         // Create the Add Item Function
